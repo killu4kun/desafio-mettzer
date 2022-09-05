@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./style";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
-export default function ArticlesCard({ article, handleFavorites, favorites }) {
+export default function ArticleCard({ article, handleFavorites, favorites }) {
   return (
     <S.ListArticles>
       <section>

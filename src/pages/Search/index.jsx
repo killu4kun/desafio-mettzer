@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import ArticlesCard from "../../components/ArticlesCard";
+import ArticleCard from "../../components/ArticleCard";
+import Pagination from "../../components/Pagination";
 import SearchForm from "../../components/SearchForm";
 import SearchHeader from "../../components/SearchHeader";
 
@@ -54,11 +55,10 @@ export default function Search() {
 
       console.log(response.data.data);
       console.log(query);
-
-      console.log(articles);
     } catch (error) {}
   };
 
+  console.log(articles);
   const handleFavorites = (article) => {
     const fav = localStorage.getItem("@MettzerTest: favorite");
     const favs = JSON.parse(fav);
@@ -97,14 +97,20 @@ export default function Search() {
           <h1>Artigos</h1>
           {articles.map((article) => {
             return (
-              <ArticlesCard
-                articles={articles}
+              <ArticleCard
+                article={article}
                 favorites={favorites}
                 handleFavorites={handleFavorites}
                 key={article.id}
               />
             );
           })}
+          <Pagination
+            limit={LIMIT}
+            total={articles.totalHits}
+            offset={offset}
+            setOffset={setOffset}
+          />
         </>
       )}
     </>
