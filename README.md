@@ -1,4 +1,4 @@
-# Desafio-Obuc
+# Desafio-Mettzer
 
 # Contexto
 Este projeto trata-se de uma ferramenta de para consultar artigos .
