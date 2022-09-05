@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SearchForm from "../../components/SearchForm";
 import SearchHeader from "../../components/SearchHeader";
+
+import api from "../../services/api";
 import * as S from "./styles";
 
 export default function Search() {
@@ -43,7 +45,7 @@ export default function Search() {
     event && event.preventDefault();
     try {
       const response = await api.get(
-        `/articles/search/${query}?page=${offset}&pageSize=${LIMIT}&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=nMfsxcpWADFUvJ2dY53QrbZKOiEBH1XS`
+        `/articles/search/${query}?page=${offset}&pageSize=${LIMIT}&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=Hhj9YTXOxutANGw1J0SBMiCl57m42FUq`
       );
 
       setArticles(response.data.data);
