@@ -22,8 +22,8 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   font-size: 18px;
-  color: #fff;
-  background-color: #4ebbcb;
+  color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.mettzer_blue};
 
   :hover {
     opacity: 0.8;

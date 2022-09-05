@@ -10,7 +10,7 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  color: white;
+  color: ${props => props.theme.colors.white};
   font-size: 16px;
   position: relative;
   bottom: 40px;

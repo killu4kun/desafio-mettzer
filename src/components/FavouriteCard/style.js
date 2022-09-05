@@ -4,7 +4,7 @@ export const ListArticles = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.white};
   margin: 10px 20px;
   padding: 20px;
   border-radius: 15px;
@@ -12,11 +12,11 @@ export const ListArticles = styled.div`
     padding-bottom: 20px;
     h1 {
       font-size: 18px;
-      color: #010202;
+      color: ${props => props.theme.colors.black};
     }
     p {
       font-size: 14px;
-      color: #010202;
+      color: ${props => props.theme.colors.black};
       margin-top: 4px;
     }
   }
@@ -24,16 +24,16 @@ export const ListArticles = styled.div`
     margin-top: 10px;
     strong {
       font-size: 18px;
-      color: #010202;
+      color: ${props => props.theme.colors.black};
     }
     p {
       font-size: 14px;
-      color: #010202;
+      color: ${props => props.theme.colors.black};
       margin-top: 4px;
     }
     h2 {
       margin-top: 10px;
-      color: #010202;
+      color: ${props => props.theme.colors.black};
       font-size: 16px;
     }
     p:nth-of-type(2) {
@@ -44,7 +44,7 @@ export const ListArticles = styled.div`
     border: none;
     width: 45px;
     height: 45px;
-    background-color: #fff;
+    background-color: ${props => props.theme.colors.white};
     border-radius: 10px;
   }
 `;

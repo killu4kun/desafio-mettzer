@@ -22,16 +22,16 @@ export const Form = styled.form`
     width: 100%;
     max-width: 120px;
     height: 50px;
-    background: #4ebbcb;
-    color: #fff;
+    background: ${(props) => props.theme.colors.mettzer_blue};
+    color: ${(props) => props.theme.colors.white};
     border: 0px;
     margin: 15px;
     border-radius: 5px;
     font-weight: bold;
     margin-right: 10px;
     &:hover {
-      background-color: white;
-      color: #4ebbcb;
+      background-color: ${(props) => props.theme.colors.white};
+      color: ${(props) => props.theme.colors.mettzer_blue};
       -webkit-transform: scale(1.1);
       -ms-transform: scale(1.1);
       transform: scale(1.1);
