@@ -5,10 +5,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: 100%;
   background-color: ${(props) => props.theme.colors.black};
+  flex-direction: column;
 
   img {
-    height: 50%;
     width: 50%;
+    height: 50%;
   }
 `;

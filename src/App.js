@@ -5,12 +5,12 @@ import GlobalStyle, { theme } from "./styles/global";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes />
-      </BrowserRouter>
-    </ThemeProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

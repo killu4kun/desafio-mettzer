@@ -7,10 +7,6 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  :root {
-    --pureBlack:#000,
-  }
-
   button {
     cursor: pointer;
   }
@@ -19,5 +15,7 @@ export default createGlobalStyle`
 export const theme = {
   colors: {
     black: "#000",
+    white: "#f5f5f5",
+    mettzer_blue: "#4ebbcb",
   },
 };
