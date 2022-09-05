@@ -19,6 +19,7 @@ Front-end:
 
   ```
     npm start
+    caso abra sozinho acessar no navegador http://localhost:3000/
   ```
   
   ## Linguagens e ferramentas
