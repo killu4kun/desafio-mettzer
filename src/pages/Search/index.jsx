@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ArticleCard from "../../components/ArticleCard";
 import FavouriteCard from "../../components/FavouriteCard";
+import Loading from "../../components/Loading";
 import Pagination from "../../components/Pagination";
 import SearchForm from "../../components/SearchForm";
 import SearchHeader from "../../components/SearchHeader";
@@ -14,6 +15,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [offset, setOffset] = useState(1);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const LIMIT = 11;
 
@@ -25,39 +27,43 @@ export default function Search() {
     }
   }, []);
 
+  const handleSearch = useCallback(
+    async (event) => {
+      setIsLoading(true);
+      const querySearch = {
+        page: {
+          limit: LIMIT,
+          offset,
+        },
+      };
+
+      if (query) {
+        querySearch.filter = {
+          query,
+        };
+      }
+
+      event && event.preventDefault();
+      try {
+        const response = await api.get(
+          `/articles/search/${query}?page=${offset}&pageSize=${LIMIT}&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=Hhj9YTXOxutANGw1J0SBMiCl57m42FUq`
+        );
+
+        setArticles(response.data.data);
+        setHasSearched(true);
+        setIsLoading(false);
+      } catch (error) {
+        alert("NENHUM RESULTADO");
+        setIsLoading(false);
+      }
+    },
+    [offset, query]
+  );
   useEffect(() => {
     if (articles.length > 0) {
       handleSearch();
     }
-  }, [offset]);
-
-  const handleSearch = async (event) => {
-    const querySearch = {
-      page: {
-        limit: LIMIT,
-        offset,
-      },
-    };
-
-    if (query) {
-      querySearch.filter = {
-        query,
-      };
-    }
-
-    event && event.preventDefault();
-    try {
-      const response = await api.get(
-        `/articles/search/${query}?page=${offset}&pageSize=${LIMIT}&metadata=true&fulltext=false&citations=false&similar=false&duplicate=false&urls=false&faithfulMetadata=false&apiKey=Hhj9YTXOxutANGw1J0SBMiCl57m42FUq`
-      );
-
-      setArticles(response.data.data);
-      setHasSearched(true);
-
-      console.log(response.data.data);
-      console.log(query);
-    } catch (error) {}
-  };
+  }, [offset, articles.length, handleSearch]);
 
   const handleFavorites = (article) => {
     const fav = localStorage.getItem("@MettzerTest: favorite");
@@ -85,24 +91,26 @@ export default function Search() {
     }
   };
   return (
-    <>
+    <S.SearchPageContainer>
       <SearchHeader />
       <SearchForm
         query={query}
         handleSearch={handleSearch}
         setQuery={setQuery}
       />
-      {hasSearched && (
+      {isLoading && <Loading />}
+      {hasSearched && !isLoading && (
         <>
           <h1>Artigos</h1>
           {articles.map((article) => {
             return (
-              <ArticleCard
-                article={article}
-                favorites={favorites}
-                handleFavorites={handleFavorites}
-                key={article.id}
-              />
+              <S.Content key={article.id}>
+                <ArticleCard
+                  article={article}
+                  favorites={favorites}
+                  handleFavorites={handleFavorites}
+                />
+              </S.Content>
             );
           })}
           <Pagination
@@ -117,14 +125,16 @@ export default function Search() {
         <h1>Favoritos</h1>
         {favorites.map((favs) => {
           return (
-            <FavouriteCard
-              favourites={favs}
-              handleFavourites={handleFavorites}
-              key={favs.id}
-            />
+            <S.Content key={favs.id}>
+              <FavouriteCard
+                favourites={favs}
+                handleFavorites={handleFavorites}
+                key={favs.id}
+              />
+            </S.Content>
           );
         })}
       </>
-    </>
+    </S.SearchPageContainer>
   );
 }
