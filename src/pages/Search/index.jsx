@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ArticleCard from "../../components/ArticleCard";
+import FavouriteCard from "../../components/FavouriteCard";
 import Pagination from "../../components/Pagination";
 import SearchForm from "../../components/SearchForm";
 import SearchHeader from "../../components/SearchHeader";
@@ -58,7 +59,6 @@ export default function Search() {
     } catch (error) {}
   };
 
-  console.log(articles);
   const handleFavorites = (article) => {
     const fav = localStorage.getItem("@MettzerTest: favorite");
     const favs = JSON.parse(fav);
@@ -113,6 +113,18 @@ export default function Search() {
           />
         </>
       )}
+      <>
+        <h1>Favoritos</h1>
+        {favorites.map((favs) => {
+          return (
+            <FavouriteCard
+              favourites={favs}
+              handleFavourites={handleFavorites}
+              key={favs.id}
+            />
+          );
+        })}
+      </>
     </>
   );
 }
