@@ -1,5 +1,10 @@
-import React from "react";
+import HomeContainer from "../../components/HomeContainer";
+import HomeLogo from "../../components/HomeLogo";
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <HomeContainer>
+      <HomeLogo />
+    </HomeContainer>
+  );
 }

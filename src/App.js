@@ -1,13 +1,16 @@
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 import Routes from "./routes";
-import GlobalStyle from "./styles/global";
+import GlobalStyle, { theme } from "./styles/global";
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalStyle />
-      <Routes />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Routes />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

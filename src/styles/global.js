@@ -7,7 +7,17 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :root {
+    --pureBlack:#000,
+  }
+
   button {
     cursor: pointer;
   }
 `;
+
+export const theme = {
+  colors: {
+    black: "#000",
+  },
+};
