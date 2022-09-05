@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ArticlesCard from "../../components/ArticlesCard";
 import SearchForm from "../../components/SearchForm";
 import SearchHeader from "../../components/SearchHeader";
 
@@ -51,7 +52,10 @@ export default function Search() {
       setArticles(response.data.data);
       setHasSearched(true);
 
-      console.log(articles, "articles");
+      console.log(response.data.data);
+      console.log(query);
+
+      console.log(articles);
     } catch (error) {}
   };
 
@@ -88,6 +92,21 @@ export default function Search() {
         handleSearch={handleSearch}
         setQuery={setQuery}
       />
+      {hasSearched && (
+        <>
+          <h1>Artigos</h1>
+          {articles.map((article) => {
+            return (
+              <ArticlesCard
+                articles={articles}
+                favorites={favorites}
+                handleFavorites={handleFavorites}
+                key={article.id}
+              />
+            );
+          })}
+        </>
+      )}
     </>
   );
 }

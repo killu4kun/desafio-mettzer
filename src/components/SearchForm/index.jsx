@@ -12,7 +12,7 @@ export default function SearchForm({ query, setQuery, handleSearch }) {
         }}
       />
       {query.length > 0 ? (
-        <button onClick={handleSearch}>Exibir artigos</button>
+        <button onClick={(event) => handleSearch(event)}>Exibir artigos</button>
       ) : (
         <button disabled>Exibir artigos</button>
       )}
